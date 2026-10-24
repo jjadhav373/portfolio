@@ -104,6 +104,15 @@ const statsObserver = new IntersectionObserver((entries) => {
 
 statBoxes.forEach(box => statsObserver.observe(box.closest('.stat-box')));
 
+// WhatsApp links: phones open the app; desktops use WhatsApp Web so the pre-filled chat opens
+// (on desktop the app/Phone Link handler can show a contact card with call options instead)
+const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+if (!isMobile) {
+    document.querySelectorAll('a[href^="https://api.whatsapp.com/send"]').forEach(link => {
+        link.href = link.href.replace('https://api.whatsapp.com/send', 'https://web.whatsapp.com/send');
+    });
+}
+
 // Navbar background on scroll
 window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
