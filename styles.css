@@ -223,28 +223,77 @@ body {
     font-size: 1.4rem;
 }
 
-.skill-item {
-    margin-bottom: 20px;
+.skill-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
-.skill-item span {
-    display: block;
-    margin-bottom: 8px;
+.skill-chips span {
+    background: #eef4ff;
+    color: #1f3b73;
+    border: 1px solid #d3e2ff;
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
 }
 
-.skill-item .progress {
-    height: 8px;
-    background-color: #e9ecef;
-    border-radius: 10px;
-    overflow: hidden;
+.open-to-work {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 6px 16px;
+    margin-top: 10px;
+    font-size: 0.95rem;
 }
 
-.skill-item .progress-bar {
-    background: var(--gradient);
+/* Earlier experience (compact list under the timeline) */
+.earlier-experience {
+    background: white;
+    padding: 30px;
     border-radius: 10px;
-    transition: width 0.6s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.earlier-experience h5 {
+    color: var(--dark-color);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.earlier-experience ul {
+    list-style: none;
+    margin: 0;
+}
+
+.earlier-experience li {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+    color: #555;
+}
+
+.earlier-experience li:last-child {
+    border-bottom: none;
+}
+
+/* Project links */
+.project-link {
+    margin-top: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.section-note {
+    color: #777;
+    font-size: 0.95rem;
+    margin-bottom: 30px;
 }
 
 /* Experience Section */
@@ -282,6 +331,10 @@ body {
 .timeline-item:nth-child(even) .timeline-content {
     margin-left: 52%;
     margin-right: 0;
+}
+
+.timeline-content ul {
+    text-align: left;
 }
 
 .timeline-marker {

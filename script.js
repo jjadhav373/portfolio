@@ -67,23 +67,23 @@ document.querySelectorAll('.project-card, .skill-category, .timeline-content').f
     observer.observe(el);
 });
 
-// Counter animation for stats
-function animateCounter(element, target, duration = 1000) {
+// Counter animation for stats: counts up and ends on the original text (keeps "+" and commas)
+function animateCounter(element, target, finalText, duration = 1000) {
     let current = 0;
     const increment = target / (duration / 16);
-    
+
     const timer = setInterval(() => {
         current += increment;
         if (current >= target) {
-            element.textContent = target;
+            element.textContent = finalText;
             clearInterval(timer);
         } else {
-            element.textContent = Math.floor(current);
+            element.textContent = Math.floor(current).toLocaleString('en-US');
         }
     }, 16);
 }
 
-// Trigger counter animation on scroll
+// Trigger counter animation on scroll; only boxes that are a plain number (e.g. "8", "50,000+") animate
 const statBoxes = document.querySelectorAll('.stat-box h3');
 let hasAnimated = false;
 
@@ -92,17 +92,16 @@ const statsObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting && !hasAnimated) {
             hasAnimated = true;
             statBoxes.forEach(box => {
-                const text = box.textContent;
-                const number = parseInt(text);
-                if (!isNaN(number)) {
-                    animateCounter(box, number, 1500);
+                const text = box.textContent.trim();
+                const match = text.match(/^([\d,]+)\+?$/);
+                if (match) {
+                    animateCounter(box, parseInt(match[1].replace(/,/g, ''), 10), text, 1500);
                 }
             });
         }
     });
 }, { threshold: 0.5 });
 
-document.querySelector('.about-stats')?.forEach(el => statsObserver.observe(el));
 statBoxes.forEach(box => statsObserver.observe(box.closest('.stat-box')));
 
 // Navbar background on scroll
