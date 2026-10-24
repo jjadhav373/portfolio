@@ -290,6 +290,17 @@ body {
     text-decoration: underline;
 }
 
+.promo-badge {
+    display: inline-block;
+    background: #e8f6ee;
+    color: #146c43;
+    border-radius: 20px;
+    padding: 2px 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
 .section-note {
     color: #777;
     font-size: 0.95rem;
